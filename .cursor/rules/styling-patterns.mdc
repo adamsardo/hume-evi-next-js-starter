@@ -1,0 +1,98 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Styling and UI Patterns Guide
+
+## Styling Architecture
+
+### Core Technologies
+- **CSS Framework**: Tailwind CSS v3.4.1
+- **Component Library**: Custom UI components with Radix UI primitives
+- **Animation**: Framer Motion for complex animations
+- **Icons**: Lucide React for consistent iconography
+
+### Global Styles
+- **[globals.css](mdc:app/globals.css)** - Global styles and Tailwind directives
+  - CSS custom properties for theming
+  - Base styles and resets
+  - Tailwind utility extensions
+
+### Tailwind Configuration
+- **[tailwind.config.ts](mdc:tailwind.config.ts)** - Custom Tailwind setup
+  - Extended color palette
+  - Custom animations
+  - Plugin configurations
+
+### Component Styling Patterns
+
+1. **Utility-First Approach**
+   ```tsx
+   <div className="flex items-center gap-4 p-6 rounded-lg bg-white shadow-md">
+   ```
+
+2. **Conditional Styling**
+   ```tsx
+   className={cn(
+     "base-classes",
+     isActive && "active-classes",
+     isDisabled && "disabled-classes"
+   )}
+   ```
+
+3. **Animation Classes**
+   - Use `transition-all duration-200` for smooth transitions
+   - Framer Motion for complex animations
+   - CSS animations via Tailwind's animate utilities
+
+## Design System Guidelines
+
+### Color Palette
+- Primary: Brand colors from Hume
+- Emotions: Mapped colors for each emotion type
+- Neutral: Gray scale for UI elements
+- Semantic: Success, error, warning states
+
+### Typography
+- Font: Geist (imported in layout)
+- Sizes: Use Tailwind's text utilities
+- Weights: Regular (400), Medium (500), Bold (700)
+
+### Spacing
+- Use Tailwind's spacing scale consistently
+- Common patterns: p-4, gap-2, mt-6
+- Maintain 8px grid system
+
+### Component Patterns
+
+1. **Cards**
+   ```tsx
+   className="rounded-lg border bg-card p-6 shadow-sm"
+   ```
+
+2. **Buttons**
+   ```tsx
+   className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90"
+   ```
+
+3. **Input Fields**
+   ```tsx
+   className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
+   ```
+
+## Responsive Design
+- Mobile-first approach
+- Breakpoints: sm (640px), md (768px), lg (1024px), xl (1280px)
+- Use responsive utilities: `sm:`, `md:`, `lg:`, `xl:`
+
+## Dark Mode Support
+- CSS variables in globals.css support theming
+- Use semantic color names (background, foreground, etc.)
+- Automatic dark mode via system preferences
+
+## Performance Considerations
+- Minimize custom CSS
+- Use Tailwind's JIT compiler
+- Purge unused styles in production
+- Optimize animations for 60fps

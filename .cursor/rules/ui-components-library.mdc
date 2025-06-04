@@ -1,0 +1,154 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# UI Components Library Guide
+
+## Core UI Components
+
+### Available Components
+
+#### Button Component
+- **[button.tsx](mdc:components/ui/button.tsx)** - Versatile button component
+  - Multiple variants: default, destructive, outline, secondary, ghost, link
+  - Multiple sizes: default, sm, lg, icon
+  - Built with Radix UI Slot for composition
+  - Full TypeScript support with forwardRef
+
+**Usage:**
+```tsx
+import { Button } from "@/components/ui/button"
+
+<Button variant="default" size="md">
+  Click me
+</Button>
+```
+
+#### Toggle Component
+- **[toggle.tsx](mdc:components/ui/toggle.tsx)** - Toggle button component
+  - Variants: default, outline
+  - Sizes: default, sm, lg
+  - Built on Radix UI Toggle primitive
+  - Accessible keyboard navigation
+
+**Usage:**
+```tsx
+import { Toggle } from "@/components/ui/toggle"
+
+<Toggle aria-label="Toggle italic">
+  <Icon />
+</Toggle>
+```
+
+## Component Architecture
+
+### Design Principles
+1. **Composability**: Components use Radix UI's Slot pattern for flexibility
+2. **Accessibility**: Full keyboard navigation and ARIA support
+3. **Styling**: Tailwind-based with CSS-in-JS via class-variance-authority
+4. **Type Safety**: Full TypeScript support with proper prop types
+
+### Variant System
+Components use `class-variance-authority` (CVA) for variant management:
+```tsx
+const variants = cva("base-classes", {
+  variants: {
+    variant: {
+      default: "default-classes",
+      secondary: "secondary-classes"
+    },
+    size: {
+      sm: "small-classes",
+      md: "medium-classes"
+    }
+  },
+  defaultVariants: {
+    variant: "default",
+    size: "md"
+  }
+})
+```
+
+### Utility Functions
+The `cn()` utility (likely from `@/lib/utils`) combines classes:
+```tsx
+import { cn } from "@/lib/utils"
+
+className={cn("base-classes", props.className)}
+```
+
+## Adding New UI Components
+
+### Component Template
+```tsx
+"use client"
+
+import * as React from "react"
+import { cva, type VariantProps } from "class-variance-authority"
+import { cn } from "@/lib/utils"
+
+const componentVariants = cva(
+  "base-classes",
+  {
+    variants: {
+      variant: {
+        default: "variant-classes"
+      }
+    },
+    defaultVariants: {
+      variant: "default"
+    }
+  }
+)
+
+export interface ComponentProps
+  extends React.HTMLAttributes<HTMLDivElement>,
+    VariantProps<typeof componentVariants> {}
+
+const Component = React.forwardRef<HTMLDivElement, ComponentProps>(
+  ({ className, variant, ...props }, ref) => {
+    return (
+      <div
+        ref={ref}
+        className={cn(componentVariants({ variant }), className)}
+        {...props}
+      />
+    )
+  }
+)
+Component.displayName = "Component"
+
+export { Component }
+```
+
+### Best Practices
+1. Always use `forwardRef` for proper ref handling
+2. Include proper TypeScript types
+3. Support className override via `cn()`
+4. Add displayName for debugging
+5. Use "use client" directive for client components
+6. Follow existing naming conventions
+
+## Extending Components
+
+### Adding Variants
+1. Update the CVA configuration
+2. Add new variant classes
+3. Update TypeScript types if needed
+4. Document usage examples
+
+### Creating Compound Components
+```tsx
+const Card = ({ children }) => <div>{children}</div>
+const CardHeader = ({ children }) => <div>{children}</div>
+const CardContent = ({ children }) => <div>{children}</div>
+
+Card.Header = CardHeader
+Card.Content = CardContent
+
+export { Card }
+```
+
+## Component Configuration
+The [components.json](mdc:components.json) file configures the component library settings for tooling and code generation.

@@ -1,0 +1,80 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Quick Reference Guide
+
+## 🚀 Essential Commands
+```bash
+pnpm dev        # Start development
+pnpm build      # Build for production
+pnpm start      # Run production build
+pnpm lint       # Run linter
+```
+
+## 📁 Key Directories
+- `/app` - Next.js routes and pages
+- `/components` - React components
+- `/utils` - Helper functions
+- `/public` - Static assets
+- `/components/ui` - Reusable UI components
+
+## 🔑 Important Files
+- [package.json](mdc:package.json) - Dependencies
+- [app/page.tsx](mdc:app/page.tsx) - Home page
+- [components/Chat.tsx](mdc:components/Chat.tsx) - Main chat interface
+- [utils/getHumeAccessToken.ts](mdc:utils/getHumeAccessToken.ts) - Auth handler
+
+## 🎨 Styling Quick Tips
+- Use Tailwind classes: `className="flex items-center gap-4"`
+- Conditional styles: `cn("base", condition && "conditional")`
+- Responsive: `sm:hidden md:block lg:flex`
+
+## 🎯 Component Patterns
+```tsx
+// Client Component
+"use client"
+import { useState } from 'react'
+
+// Server Component (default)
+import { getData } from './actions'
+
+// Conditional Rendering
+{isLoading ? <Spinner /> : <Content />}
+
+// Event Handlers
+onClick={() => handleClick()}
+```
+
+## 🔊 Hume Integration
+1. Voice sessions via `StartCall` component
+2. Emotions displayed in `Expressions` component
+3. Messages shown in `Messages` component
+4. Audio visualization in `MicFFT` component
+
+## 🐛 Common Issues
+- **No voice?** Check microphone permissions
+- **No emotions?** Verify API keys in .env.local
+- **Build errors?** Run `pnpm install`
+- **Type errors?** Check TypeScript strict mode
+
+## 📦 Key Dependencies
+- `@humeai/voice-react` - Voice SDK
+- `next` - Framework
+- `framer-motion` - Animations
+- `tailwindcss` - Styling
+- `@radix-ui/*` - UI primitives
+
+## 🔧 Environment Variables
+```env
+HUME_API_KEY=your_key
+HUME_SECRET_KEY=your_secret
+```
+
+## 💡 Development Tips
+1. **NEVER rebuild from scratch** - Always enhance existing code
+2. Use TypeScript for type safety
+3. Follow existing component patterns
+4. Test voice features in Chrome/Edge
+5. Keep components small and focused

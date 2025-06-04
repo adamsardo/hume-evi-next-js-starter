@@ -1,0 +1,43 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Hume EVI Next.js Starter Project Overview
+
+## Project Purpose
+This is a **Hume Empathic Voice Interface (EVI)** starter template built with Next.js 14.2.3. The project provides a foundation for building voice-enabled applications with emotional intelligence capabilities using Hume AI's SDK.
+
+**CRITICAL**: We are ADDING functionality to this existing project, NOT rebuilding from scratch. Every line of code should enhance the existing application.
+
+## Core Technologies
+- **Framework**: Next.js 14.2.3 with App Router pattern
+- **Voice AI**: Hume AI Voice SDK (`@humeai/voice-react` v0.1.15)
+- **UI Framework**: Tailwind CSS with Radix UI components
+- **Animation**: Framer Motion for smooth transitions
+- **Language**: TypeScript
+- **Package Manager**: pnpm
+
+## Key Files
+- **Entry Point**: [app/page.tsx](mdc:app/page.tsx) - Main application page
+- **Layout**: [app/layout.tsx](mdc:app/layout.tsx) - Root layout with metadata
+- **Global Styles**: [app/globals.css](mdc:app/globals.css) - Tailwind and custom styles
+- **Package Config**: [package.json](mdc:package.json) - Dependencies and scripts
+- **TypeScript Config**: [tsconfig.json](mdc:tsconfig.json) - TypeScript settings
+- **Tailwind Config**: [tailwind.config.ts](mdc:tailwind.config.ts) - Tailwind customization
+- **Components Config**: [components.json](mdc:components.json) - UI components configuration
+
+## Development Commands
+```bash
+pnpm dev     # Start development server on http://localhost:3000
+pnpm build   # Build for production
+pnpm start   # Start production server
+pnpm lint    # Run ESLint
+```
+
+## Project Structure Pattern
+The project follows Next.js 14 App Router conventions:
+- `/app` - Application routes and pages
+- `/components` - Reusable React components
+- `/utils` - Utility functions and helpers
+- `/public` - Static assets

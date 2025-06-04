@@ -1,0 +1,108 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Development Workflow Guide
+
+## Getting Started
+
+### Prerequisites
+- Node.js 18+ 
+- pnpm package manager
+- Hume API credentials
+
+### Initial Setup
+```bash
+# Install dependencies
+pnpm install
+
+# Set up environment variables
+cp .env.example .env.local
+# Add your Hume API keys to .env.local
+
+# Start development server
+pnpm dev
+```
+
+## Development Guidelines
+
+### Code Organization
+1. **Features**: Add new features as enhancements to existing components
+2. **Components**: Follow the established component structure
+3. **Utilities**: Place helper functions in `/utils`
+4. **Types**: Keep TypeScript types co-located with components
+
+### Git Workflow
+1. Create feature branches from `main`
+2. Use conventional commits:
+   - `feat:` New features
+   - `fix:` Bug fixes
+   - `docs:` Documentation
+   - `style:` Formatting changes
+   - `refactor:` Code refactoring
+   - `test:` Test additions
+   - `chore:` Maintenance tasks
+
+### Testing Approach
+1. Manual testing of voice interactions
+2. Component testing for UI elements
+3. Test emotion detection accuracy
+4. Verify WebRTC connections
+
+## Common Development Tasks
+
+### Adding New Voice Commands
+1. Update the Chat component to handle new transcripts
+2. Parse commands in the message handler
+3. Implement command actions
+4. Update UI feedback
+
+### Extending Emotion Visualizations
+1. Modify expression components
+2. Update color/label mappings in utils
+3. Add new visualization components
+4. Connect to emotion data stream
+
+### Creating New Pages
+1. Add new route in `/app` directory
+2. Follow Next.js App Router conventions
+3. Implement proper metadata
+4. Ensure responsive design
+
+## Debugging Tips
+
+### Voice Connection Issues
+- Check browser console for WebRTC errors
+- Verify microphone permissions
+- Ensure Hume API keys are valid
+- Test with different browsers
+
+### Emotion Detection
+- Monitor emotion score thresholds
+- Check API response formats
+- Verify data transformation logic
+- Test with various voice inputs
+
+## Performance Optimization
+
+### Client-Side
+1. Minimize re-renders in voice components
+2. Use React.memo for expensive components
+3. Optimize animation performance
+4. Lazy load non-critical components
+
+### Build Optimization
+1. Analyze bundle size with `next build`
+2. Use dynamic imports for large components
+3. Optimize images and assets
+4. Enable production optimizations
+
+## Deployment Checklist
+- [ ] Environment variables configured
+- [ ] API keys secured
+- [ ] CORS settings verified
+- [ ] WebRTC protocols supported
+- [ ] Error handling implemented
+- [ ] Performance tested
+- [ ] Responsive design verified

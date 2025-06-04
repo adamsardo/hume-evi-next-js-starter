@@ -1,0 +1,70 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Hume AI Integration Guide
+
+## Hume EVI SDK Integration
+
+### Core SDK Usage
+The project uses two main Hume packages:
+- `@humeai/voice-react` - React hooks and components for voice interface
+- `hume` - Core Hume AI SDK for API interactions
+
+### Authentication
+- **[getHumeAccessToken.ts](mdc:utils/getHumeAccessToken.ts)** - Handles Hume API authentication
+  - Manages access token retrieval
+  - Should be called server-side for security
+
+### Expression Handling
+The project includes utilities for working with Hume's emotion detection:
+
+- **[expressionColors.ts](mdc:utils/expressionColors.ts)** - Color mapping for emotions
+  - Maps each detected emotion to a specific color
+  - Used for visual representation of emotional states
+
+- **[expressionLabels.ts](mdc:utils/expressionLabels.ts)** - Human-readable emotion labels
+  - Provides display names for emotion types
+  - Used in UI components for emotion display
+
+### Key Integration Patterns
+
+1. **Voice Session Management**
+   - Sessions are initiated through the StartCall component
+   - Voice data streams through WebRTC connections
+   - Real-time emotion analysis happens on Hume's servers
+
+2. **Emotion Detection Flow**
+   ```
+   User speaks → Audio stream → Hume API → Emotion data → UI update
+   ```
+
+3. **Best Practices**
+   - Always handle connection errors gracefully
+   - Provide clear UI feedback for voice activity
+   - Cache emotion data to reduce API calls
+   - Use server-side authentication for API keys
+
+## Environment Variables Required
+```env
+HUME_API_KEY=your_api_key_here
+HUME_SECRET_KEY=your_secret_key_here
+```
+
+## Common Integration Tasks
+
+### Adding New Emotion Visualizations
+1. Update expression mappings in utils
+2. Create new visualization component
+3. Connect to emotion data stream
+
+### Extending Voice Commands
+1. Listen to transcript updates
+2. Parse commands from text
+3. Trigger appropriate actions
+
+### Custom Emotion Processing
+1. Subscribe to emotion events
+2. Process raw emotion scores
+3. Apply custom logic or thresholds

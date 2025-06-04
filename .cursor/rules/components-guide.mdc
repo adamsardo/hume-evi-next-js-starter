@@ -1,0 +1,60 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Hume EVI Components Guide
+
+## Core Voice Interface Components
+
+### Main Chat Interface
+- **[Chat.tsx](mdc:components/Chat.tsx)** - Main chat component that orchestrates the voice interface
+  - Manages the overall chat experience
+  - Coordinates between voice input and message display
+
+### Voice Interaction Components
+- **[StartCall.tsx](mdc:components/StartCall.tsx)** - Initiates voice calls with Hume EVI
+  - Handles connection setup
+  - Manages initial call state
+  
+- **[Controls.tsx](mdc:components/Controls.tsx)** - Voice interface controls
+  - Mute/unmute functionality
+  - Call end/start controls
+  - Settings toggles
+
+### Display Components
+- **[Messages.tsx](mdc:components/Messages.tsx)** - Displays conversation messages
+  - Renders user and AI messages
+  - Handles message formatting and timestamps
+  
+- **[Expressions.tsx](mdc:components/Expressions.tsx)** - Emotional expression visualization
+  - Shows detected emotions from voice analysis
+  - Real-time emotional state display
+  
+- **[MicFFT.tsx](mdc:components/MicFFT.tsx)** - Microphone FFT visualization
+  - Audio waveform display
+  - Real-time voice activity indicator
+
+### Navigation
+- **[Nav.tsx](mdc:components/Nav.tsx)** - Navigation component
+  - App header/navigation
+  - Branding and menu items
+
+## UI Component Library
+The project uses a custom UI component library in `/components/ui/` based on:
+- Radix UI primitives for accessibility
+- Tailwind CSS for styling
+- shadcn/ui patterns
+
+## Component Architecture Patterns
+1. **Client Components**: Most voice interface components are client-side for real-time interaction
+2. **Server Components**: Layout and static content use server components
+3. **State Management**: Components use React hooks for local state
+4. **Styling**: Tailwind utility classes with CSS modules for complex styles
+
+## Adding New Components
+When adding new functionality:
+1. Place voice-related components in `/components`
+2. Generic UI components go in `/components/ui`
+3. Follow existing patterns for imports and exports
+4. Maintain TypeScript strict typing
